@@ -1,0 +1,29 @@
+server:
+  port: 3344
+eureka:
+  client:
+    service-url:
+       defaultZone: http://eureka7001.com:7001/eureka/
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/fulR/springcloud-config.git #仓库名称
+          search-paths:
+            - springcloud-config
+      label: master
+  rabbitmq:
+    host: 49.234.36.144
+    port: 5672
+    username: guest
+    password: guest
+
+# 暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"

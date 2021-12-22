@@ -1,0 +1,31 @@
+server:
+  port: 8801
+spring:
+  application:
+    name: cloud-stream-privider
+  rabbitmq:
+    host: 49.234.36.144
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+      bindings:
+        output:
+          destination: cruiiExchange
+          content-type: application/json
+          binder: defaultRabbit
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 5 #如果现在超过了5秒的间隔
+    lease-renewal-interval-in-seconds: 2 #设置心跳的时间间隔
+    instance-id: send-8801.com
+    prefer-ip-address: true #访问的路径变为IP地址
+
+
